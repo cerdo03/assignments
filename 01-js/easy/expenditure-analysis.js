@@ -14,7 +14,19 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  const spentByCat = {};
+  for(const trans of transactions){
+    if(spentByCat.hasOwnProperty(trans.category)){
+      spentByCat[trans.category] = spentByCat[trans.category] + trans.price;
+    } else{
+      spentByCat[trans.category] = trans.price;
+    }
+  }
+  const ans = []
+  for(let cat in spentByCat){
+    ans.push({category:cat,totalSpent:spentByCat[cat]});
+  }
+  return ans;
 }
 
 module.exports = calculateTotalSpentByCategory;
